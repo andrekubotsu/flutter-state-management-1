@@ -18,24 +18,33 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("State Managed Counter"),
       ),
-      body: StateBuilder<int>(
+      body: StateBuilder<Ob>(
         controller: controller,
-        builder: (_, state) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Text(
-                "Count: ${controller.state}",
-                style: TextStyle(
-                  fontSize: 32,
-                ),
-              ),
-            )
-          ],
-        ),
+        builder: (_, state) {
+          if (state.name.isNotEmpty) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Text(
+                    "Name: ${state.name}\nNumber: ${state.number}",
+                    style: TextStyle(
+                      fontSize: 32,
+                    ),
+                  ),
+                )
+              ],
+            );
+          } else {
+            return Container();
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: controller.increment,
+        onPressed: () {
+          controller.setName("Andre");
+          controller.setNumber(20);
+        },
         child: Icon(Icons.add),
       ),
     );
