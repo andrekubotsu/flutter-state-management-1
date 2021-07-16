@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-// feito em aula por Gabul
+// baseado na estratégia do flutterando
 class HomeCountController {
   ValueNotifier<int> count1 = ValueNotifier<int>(0);
   ValueNotifier<int> count2 = ValueNotifier<int>(0);
