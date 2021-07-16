@@ -18,25 +18,53 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("State Managed Counter"),
       ),
-      body: StateBuilder<int>(
-        controller: controller,
-        builder: (_, state) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Text(
-                "Count: ${controller.state}",
-                style: TextStyle(
-                  fontSize: 32,
-                ),
-              ),
-            )
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: AnimatedBuilder(
+              animation: controller.count1,
+              builder: (_, __) {
+                print("Chamou Count1");
+                return Text(
+                  "Count: ${controller.count1.value}",
+                  style: TextStyle(
+                    fontSize: 32,
+                  ),
+                );
+              },
+            ),
+          ),
+          Center(
+            child: AnimatedBuilder(
+              animation: controller.count2,
+              builder: (_, __) {
+                print("Chamou Count2");
+                return Text(
+                  "Count: ${controller.count2.value}",
+                  style: TextStyle(
+                    fontSize: 32,
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: controller.increment,
-        child: Icon(Icons.add),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          FloatingActionButton(
+            backgroundColor: Colors.orange,
+            onPressed: controller.increment1,
+            child: Icon(Icons.add),
+          ),
+          FloatingActionButton(
+            onPressed: controller.increment2,
+            child: Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }
